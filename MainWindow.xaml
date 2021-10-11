@@ -1,0 +1,93 @@
+﻿<Window
+    x:Class="DatagridTest.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Button="clr-namespace:DatagridTest.Buttons"
+    xmlns:Usercontrol="clr-namespace:DatagridTest.UserControls"
+    xmlns:ViewModels="clr-namespace:DatagridTest.ViewModels"
+    xmlns:Views="clr-namespace:DatagridTest.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:DatagridTest"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="uc"
+    Title="MainWindow"
+    MinWidth="900"
+    MinHeight="500"
+    d:Height="500"
+    d:Width="900"
+    AllowsTransparency="True"
+    Background="Transparent"
+    PreviewMouseLeftButtonDown="uc_PreviewMouseLeftButtonDown"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <SolidColorBrush x:Key="Hover_Color" Color="#CCCCCC" />
+        <SolidColorBrush
+            x:Key="Main_Color"
+            Opacity="1"
+            Color="#F3F3F3" />
+
+        <!--  ____________Colors_____________  -->
+        <Color x:Key="Color1_Facebook">#4267B2</Color>
+        <Color x:Key="Color2_Facebook">#FF1C39EC</Color>
+        <Color x:Key="Color1_Instagram">#F56040</Color>
+        <Color x:Key="Color2_Instagram">#FD1D1D</Color>
+
+        <!--  ____________GradientBrushs_____________  -->
+
+        <!--  ____________________________________  -->
+
+        <!--  ____________Paths_____________  -->
+
+        <!--  ____________________________________  -->
+
+        <!--  _______________Styles_______________  -->
+
+        <Style x:Key="Sliding_SideMenu" TargetType="Canvas" />
+
+
+        <!--  ____________________________________  -->
+
+    </Window.Resources>
+    <Border
+        Background="{StaticResource Main_Color}"
+        BorderBrush="Gray"
+        BorderThickness="0.5"
+        CornerRadius="6">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ContentControl
+                x:Name="View"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="4,0,0,0"
+                Content="{Binding CurrentViewModel}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type ViewModels:HomeViewModel}">
+                        <Views:HomView />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type ViewModels:UsersViewModel}">
+                        <Views:UsersView />
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+            <Usercontrol:ControlBar Grid.ColumnSpan="2" />
+            <Usercontrol:SideMenu
+                x:Name="Sidemenu"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2" />
+        </Grid>
+    </Border>
+</Window>

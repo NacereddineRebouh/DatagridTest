@@ -1,0 +1,265 @@
+﻿<UserControl
+    x:Class="DatagridTest.UserControls.SideMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Converter="clr-namespace:DatagridTest.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DatagridTest.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Converter:CurrentViewConverter x:Key="currentViewConverter" />
+        <PathGeometry x:Key="home" Figures="M10.5495 2.53189C11.3874 1.82531 12.6126 1.82531 13.4505 2.5319L20.2005 8.224C20.7074 8.65152 21 9.2809 21 9.94406V19.7468C21 20.7133 20.2165 21.4968 19.25 21.4968H15.75C14.7835 21.4968 14 20.7133 14 19.7468V14.2468C14 14.1088 13.8881 13.9968 13.75 13.9968H10.25C10.1119 13.9968 9.99999 14.1088 9.99999 14.2468V19.7468C9.99999 20.7133 9.2165 21.4968 8.25 21.4968H4.75C3.7835 21.4968 3 20.7133 3 19.7468V9.94406C3 9.2809 3.29255 8.65152 3.79952 8.224L10.5495 2.53189ZM12.4835 3.6786C12.2042 3.44307 11.7958 3.44307 11.5165 3.6786L4.76651 9.37071C4.59752 9.51321 4.5 9.72301 4.5 9.94406V19.7468C4.5 19.8849 4.61193 19.9968 4.75 19.9968H8.25C8.38807 19.9968 8.49999 19.8849 8.49999 19.7468V14.2468C8.49999 13.2803 9.2835 12.4968 10.25 12.4968H13.75C14.7165 12.4968 15.5 13.2803 15.5 14.2468V19.7468C15.5 19.8849 15.6119 19.9968 15.75 19.9968H19.25C19.3881 19.9968 19.5 19.8849 19.5 19.7468V9.94406C19.5 9.72301 19.4025 9.51321 19.2335 9.37071L12.4835 3.6786Z" />
+        <SolidColorBrush x:Key="Hover_Color" Color="#CCCCCC" />
+        <Style x:Key="radioButtonStyle" TargetType="RadioButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <StackPanel
+                            x:Name="Stack"
+                            Margin="0"
+                            Background="Transparent"
+                            Orientation="Horizontal">
+                            <Rectangle
+                                x:Name="selection_Rectangle"
+                                Width="2"
+                                Height="0"
+                                Margin="3,0,3,0"
+                                VerticalAlignment="Center"
+                                Fill="#005FB8"
+                                RadiusX="1"
+                                RadiusY="1">
+                                <Rectangle.Triggers />
+                            </Rectangle>
+                            <!--<Image
+                                Width="30"
+                                VerticalAlignment="Center"
+                                Source="/Images/home2.png" />-->
+                            <Path
+                                x:Name="path"
+                                Margin="0,-2,0,0"
+                                VerticalAlignment="Center"
+                                Data="{TemplateBinding Tag}"
+                                Fill="DimGray"
+                                Stroke="DimGray"
+                                StrokeThickness="0.1" />
+                            <TextBlock
+                                x:Name="texxt"
+                                Margin="13,8,0,8"
+                                VerticalAlignment="Center"
+                                FontFamily="Montserrat"
+                                FontWeight="DemiBold"
+                                Foreground="DimGray"
+                                Text="{TemplateBinding Content}" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="RadioButton.IsChecked" Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="texxt" Property="Foreground" Value="#005FB8" />
+                                <Setter TargetName="path" Property="Stroke" Value="#005FB8" />
+                                <Setter TargetName="path" Property="Fill" Value="#005FB8" />
+                                <!--<Setter TargetName="Stack" Property="Background" Value="" />-->
+                                <!--<Setter TargetName="selection_Rectangle" Property="Height" Value="20" />-->
+                                <MultiTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="selection_Rectangle"
+                                                Storyboard.TargetProperty="Height"
+                                                From="0"
+                                                To="20"
+                                                Duration="0:0:0.2">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuarticEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation
+                                                Storyboard.TargetName="Stack"
+                                                Storyboard.TargetProperty="Background.Color"
+                                                From="Transparent"
+                                                To="#CCCCCC"
+                                                Duration="0:0:0.2">
+                                                <ColorAnimation.EasingFunction>
+                                                    <QuarticEase EasingMode="EaseOut" />
+                                                </ColorAnimation.EasingFunction>
+                                            </ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </MultiTrigger.EnterActions>
+                                <MultiTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="selection_Rectangle"
+                                                Storyboard.TargetProperty="Height"
+                                                From="20"
+                                                To="0"
+                                                Duration="0:0:0.1">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuarticEase EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+
+                                            <ColorAnimation
+                                                Storyboard.TargetName="Stack"
+                                                Storyboard.TargetProperty="Background.Color"
+                                                From="#CCCCCC"
+                                                To="Transparent"
+                                                Duration="0:0:0.1">
+                                                <ColorAnimation.EasingFunction>
+                                                    <QuarticEase EasingMode="EaseOut" />
+                                                </ColorAnimation.EasingFunction>
+                                            </ColorAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </MultiTrigger.ExitActions>
+                            </MultiTrigger>
+                            <!--<MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="RadioButton.IsChecked" Value="False" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.EnterActions>
+
+                                </MultiTrigger.EnterActions>
+                            </MultiTrigger>-->
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border
+                            x:Name="Border"
+                            Background="Transparent"
+                            CornerRadius="3">
+                            <Path
+                                x:Name="Button_Shape"
+                                Margin="0,0,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Fill="Transparent"
+                                Stroke="DimGray"
+                                StrokeEndLineCap="Round"
+                                StrokeStartLineCap="Round"
+                                StrokeThickness="2.1"
+                                UseLayoutRounding="True">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigure x:Name="l1" StartPoint="0,14">
+                                                <LineSegment x:Name="l2" Point="25,14" />
+                                            </PathFigure>
+                                            <PathFigure x:Name="l3" StartPoint="0,7">
+                                                <LineSegment x:Name="l4" Point="25,7" />
+                                            </PathFigure>
+                                            <PathFigure x:Name="l5" StartPoint="0,0">
+                                                <LineSegment x:Name="l6" Point="25,0" />
+                                            </PathFigure>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+
+
+                            </Path>
+                        </Border>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </UserControl.Resources>
+    <Border
+        Name="SideMenuBorder"
+        HorizontalAlignment="Left"
+        Background="White"
+        CornerRadius="6,0,0,6">
+        <Grid x:Name="SideMenuGrid" Width="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="1.5*" />
+            </Grid.RowDefinitions>
+            <ToggleButton
+                x:Name="toggle"
+                Width="30"
+                Height="25"
+                Margin="5,8,5,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Foreground="Black"
+                Style="{StaticResource ToggleButtonStyle}">
+                <ToggleButton.Triggers>
+                    <EventTrigger RoutedEvent="ToggleButton.Checked">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetName="SideMenuGrid"
+                                    Storyboard.TargetProperty="Width"
+                                    From="40"
+                                    To="130"
+                                    Duration="0:0:0.4">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuarticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetName="SideMenuGrid"
+                                    Storyboard.TargetProperty="Width"
+                                    From="130"
+                                    To="40"
+                                    Duration="0:0:0.2">
+                                    <DoubleAnimation.EasingFunction>
+                                        <QuarticEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+
+                </ToggleButton.Triggers>
+            </ToggleButton>
+
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+                <RadioButton
+                    Margin="0,10,0,5"
+                    Command="{Binding SideMenuViewModel.NavigateHomeViewModel}"
+                    Content="Home"
+                    IsChecked="{Binding CurrentViewModel, Mode=OneTime, Converter={StaticResource currentViewConverter}, ConverterParameter=home}"
+                    Style="{StaticResource radioButtonStyle}"
+                    Tag="{StaticResource home}" />
+                <RadioButton
+                    Margin="0,0,0,5"
+                    Command="{Binding SideMenuViewModel.NavigateUsersViewModel}"
+                    Content="Users"
+                    Style="{StaticResource radioButtonStyle}"
+                    Tag="{StaticResource home}" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

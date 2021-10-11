@@ -1,0 +1,14 @@
+﻿<Application
+    x:Class="DatagridTest.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ViewModels="clr-namespace:DatagridTest.ViewModels"
+    xmlns:Views="clr-namespace:DatagridTest.Views"
+    xmlns:local="clr-namespace:DatagridTest"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <Application.Resources>
+        <system:UInt32 x:Key="BlurGradientValue">
+            0x99FFFFFF
+        </system:UInt32>
+    </Application.Resources>
+</Application>

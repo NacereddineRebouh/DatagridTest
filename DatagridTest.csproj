@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Database\DatagridTest.db" />
+    <None Remove="Images\home.png" />
+    <None Remove="Images\home2.png" />
+    <None Remove="Images\moon.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HandyControl" Version="3.2.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.10" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.115" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Buttons\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Database\DatagridTest.db" />
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\home2.png" />
+    <Resource Include="Images\moon.jpg" />
+  </ItemGroup>
+
+</Project>

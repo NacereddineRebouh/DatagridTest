@@ -1,0 +1,128 @@
+﻿<UserControl
+    x:Class="DatagridTest.Buttons.ButtonStyle2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DatagridTest.Buttons"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="uc"
+    MinHeight="40"
+    d:DesignHeight="50"
+    d:DesignWidth="200"
+    Background="Transparent"
+    ButtonBase.Click="uc_Click"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+
+        <!--  Button style with TextBox and image  -->
+        <!--  ____________StoryBoards_____________  -->
+        <SolidColorBrush x:Key="hovercolor" Color="{Binding HoverColor, ElementName=uc}" />
+        <Storyboard x:Key="Anim_Selection">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="selection_Rectangle" Storyboard.TargetProperty="Height">
+                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="00:00:00.2" Value="30">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseOut" />
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Anim_NoSelection">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="selection_Rectangle" Storyboard.TargetProperty="Height">
+
+                <LinearDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
+
+            </DoubleAnimationUsingKeyFrames>
+
+        </Storyboard>
+        <!--  do hover and then put the text and its image on the same level  -->
+        <!--  ____________________________________  -->
+        <QuadraticEase x:Key="Ease1" EasingMode="EaseOut" />
+        <Style x:Key="ButtonStyle" TargetType="RadioButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+
+
+                        <Grid x:Name="Button_Grid" Background="{TemplateBinding Background}">
+                            <StackPanel
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <Path x:Name="IconPath" />
+                                <TextBlock
+                                    x:Name="Button_Text"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontFamily="{Binding ElementName=uc, Path=FontFamily}"
+                                    FontSize="{Binding FontSize, ElementName=uc}"
+                                    Foreground="LightGray"
+                                    Text="{Binding ButtonText, ElementName=uc}" />
+                            </StackPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Button_Text" Property="Foreground" Value="{Binding selectionColor, ElementName=uc}" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="Button_Text" Property="Foreground" Value="LightGray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal">
+        <Rectangle
+            x:Name="selection_Rectangle"
+            Width="2"
+            Height="0"
+            VerticalAlignment="Center"
+            Fill="{Binding selectionColor, ElementName=uc}"
+            RadiusX="3"
+            RadiusY="3"
+            Visibility="{Binding RectangleVisibility, ElementName=uc}" />
+        <RadioButton
+            x:Name="Item"
+            Background="Transparent"
+            Command="{Binding ElementName=uc, Path=Command}"
+            IsChecked="False"
+            MouseMove="Button_MouseMove"
+            Style="{StaticResource ButtonStyle}">
+            <RadioButton.Triggers>
+
+                <EventTrigger RoutedEvent="RadioButton.Checked">
+                    <BeginStoryboard Storyboard="{StaticResource Anim_Selection}" />
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                                EasingFunction="{StaticResource Ease1}"
+                                Storyboard.TargetName="Item"
+                                Storyboard.TargetProperty="Background.Color"
+                                To="{Binding ElementName=uc, Path=HoverColor}"
+                                Duration="0:0:0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="RadioButton.Unchecked">
+                    <BeginStoryboard Storyboard="{StaticResource Anim_NoSelection}" />
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                                EasingFunction="{StaticResource Ease1}"
+                                Storyboard.TargetName="Item"
+                                Storyboard.TargetProperty="Background.Color"
+                                To="Transparent"
+                                Duration="0:0:0.1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </RadioButton.Triggers>
+        </RadioButton>
+
+    </StackPanel>
+</UserControl>

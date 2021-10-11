@@ -1,0 +1,263 @@
+﻿<UserControl
+    x:Class="DatagridTest.Views.HomView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DatagridTest.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Border Background="White" CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="208" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1">
+                <Border
+                    Grid.Column="1"
+                    Height="220"
+                    Margin="5,10,5,5"
+                    VerticalAlignment="Top"
+                    CornerRadius="20"
+                    UseLayoutRounding="True">
+                    <Grid UseLayoutRounding="True">
+                        <StackPanel Orientation="Vertical">
+                            <Ellipse
+                                Width="70"
+                                Height="70"
+                                Margin="15"
+                                VerticalAlignment="Top">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Images/moon.jpg" Stretch="UniformToFill" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                            <TextBlock
+                                x:Name="CurrentUsername"
+                                HorizontalAlignment="Center"
+                                FontFamily="Montserrat"
+                                FontSize="18"
+                                FontStyle="Italic"
+                                FontWeight="Bold"
+                                Foreground="#FF0D0A32"
+                                Text="Moon pie" />
+                            <TextBlock
+                                x:Name="Job"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Center"
+                                FontFamily="Montserrat"
+                                FontSize="11"
+                                FontWeight="Normal"
+                                Foreground="#FF646363"
+                                Text="UI/UX Designer for MoonPie Studio" />
+                            <Grid
+                                Height="50"
+                                Margin="10,15"
+                                HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel
+                                    x:Name="UsersAdded"
+                                    Grid.Column="0"
+                                    Height="35"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Vertical">
+                                    <TextBlock
+                                        x:Name="Number"
+                                        HorizontalAlignment="Center"
+                                        FontFamily="Montserrat"
+                                        FontSize="15"
+                                        FontWeight="Bold"
+                                        Foreground="#FF0D0A32"
+                                        Text="25" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontFamily="Montserrat"
+                                        FontSize="13"
+                                        FontWeight="Normal"
+                                        Foreground="#FF646363"
+                                        Text="Users" />
+                                </StackPanel>
+
+                                <StackPanel
+                                    x:Name="CurrentUserRole"
+                                    Grid.Column="1"
+                                    Height="35"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Vertical">
+                                    <TextBlock
+                                        x:Name="Role"
+                                        HorizontalAlignment="Center"
+                                        FontFamily="Montserrat"
+                                        FontSize="15"
+                                        FontWeight="Bold"
+                                        Foreground="#FF0D0A32"
+                                        Text="Admin" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontFamily="Montserrat"
+                                        FontSize="11"
+                                        FontWeight="Normal"
+                                        Foreground="#FF646363"
+                                        Text="Role" />
+                                </StackPanel>
+
+                                <StackPanel
+                                    x:Name="CurrentUserTeamMembers"
+                                    Grid.Column="2"
+                                    Height="35"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Orientation="Vertical">
+                                    <TextBlock
+                                        x:Name="TeamMembers"
+                                        HorizontalAlignment="Center"
+                                        FontFamily="Montserrat"
+                                        FontSize="15"
+                                        FontWeight="Bold"
+                                        Foreground="#FF0D0A32"
+                                        Text="10" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontFamily="Montserrat"
+                                        FontSize="11"
+                                        FontWeight="Normal"
+                                        Foreground="#FF646363"
+                                        Text="Members" />
+                                </StackPanel>
+                            </Grid>
+                            <!--<StackPanel
+                            x:Name="Achievements"
+                            Margin="10,10,10,0"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+
+                        </StackPanel>-->
+                        </StackPanel>
+                    </Grid>
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop x:Name="Y_grad1" Offset="0.8" Color="#B0E0FC" />
+
+                            <GradientStop x:Name="Y_grad2" Offset="0" Color="#EDFBFF" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="20"
+                            Direction="220"
+                            Opacity="0.2"
+                            ShadowDepth="5"
+                            Color="Gray" />
+                    </Border.Effect>
+                </Border>
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="10"
+                    Orientation="Vertical">
+                    <TextBlock
+                        Margin="10"
+                        HorizontalAlignment="Left"
+                        FontFamily="Montserrat"
+                        FontSize="15"
+                        FontStyle="Italic"
+                        FontWeight="Bold"
+                        Foreground="#FF0D0A32"
+                        Text="Team Members" />
+                    <ListView
+                        x:Name="HistoryOperations"
+                        HorizontalContentAlignment="Right"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        ItemsSource="{Binding UsersList}"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        SelectionMode="Single">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Background="Transparent">
+                                    <StackPanel Background="Transparent" Orientation="Horizontal">
+                                        <Image
+                                            x:Name="UserImage"
+                                            Width="20"
+                                            Height="20 "
+                                            Source="/Images/t1.jpg"
+                                            Stretch="UniformToFill" />
+                                        <StackPanel HorizontalAlignment="Right" Orientation="Vertical">
+                                            <TextBlock
+                                                x:Name="UserFullName"
+                                                Margin="10,10,0,0"
+                                                HorizontalAlignment="Right"
+                                                FontFamily="Montserrat"
+                                                FontSize="15"
+                                                FontStyle="Italic"
+                                                FontWeight="Bold"
+                                                Foreground="#FF0D0A32"
+                                                Text="{Binding FullName}" />
+                                            <TextBlock
+                                                x:Name="Result"
+                                                Margin="10,5,0,5"
+                                                HorizontalAlignment="Right"
+                                                FontFamily="Montserrat"
+                                                FontSize="11"
+                                                FontWeight="Normal"
+                                                Foreground="#FF646363"
+                                                Text="{Binding Job}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <!--<Border
+                                                x:Name="Bd"
+                                                Padding="{TemplateBinding Padding}"
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="Transparent"
+                                                BorderThickness="0.9"
+                                                SnapsToDevicePixels="true">-->
+                                            <ContentPresenter
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                            <!--</Border>-->
+                                            <!--<ControlTemplate.Triggers>
+                                                <Trigger Property="Control.IsMouseOver" Value="True">
+                                                    <Setter TargetName="Bd" Property="Background" Value="{StaticResource Hover_Color}" />
+                                                    <Setter TargetName="Bd" Property="ItemsControl.BorderBrush" Value="LightGray" />
+                                                </Trigger>
+                                                <Trigger Property="Control.IsMouseOver" Value="False">
+                                                    <Setter TargetName="Bd" Property="ItemsControl.BorderBrush" Value="Transparent" />
+                                                    <Setter TargetName="Bd" Property="Control.Background" Value="Transparent" />
+                                                </Trigger>
+
+                                            </ControlTemplate.Triggers>-->
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <!--<EventSetter Event="PreviewMouseRightButtonDown" Handler="ListViewItem_PreviewMouseRightButtonDown" />-->
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.Resources>
+                            <Style TargetType="ListView">
+                                <!--<EventSetter Event="MouseEnter" Handler="ScrollViewer_MouseEnter" />
+                                <EventSetter Event="MouseLeave" Handler="ScrollViewer_MouseLeave" />-->
+                            </Style>
+                        </ListView.Resources>
+                    </ListView>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
